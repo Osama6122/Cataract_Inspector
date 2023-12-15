@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "802030524728",
+    "project_id": "eye-cataract-fab47",
+    "storage_bucket": "eye-cataract-fab47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802030524728:android:b1fca8b6947933885109cd",
+        "android_client_info": {
+          "package_name": "com.example.eyecataract"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "802030524728-ntmbsr16allso43fbgbb4tcvhgtbap4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMsg0Dqe6mUbk4LVtQdTSJfVmWXOOdY1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "802030524728-ntmbsr16allso43fbgbb4tcvhgtbap4t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "802030524728-8hddlj1ffbvsvmcpbmjgkpj2ihoqcvg4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eyecataract"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

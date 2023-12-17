@@ -1,4 +1,3 @@
-import 'package:eyecataract/account.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -43,9 +42,9 @@ class _SecondState extends State<Second> {
               DrawerHeader(
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/eye.jpg'),
-                        fit: BoxFit.cover,
-                      )),
+                    image: AssetImage('assets/images/eye.jpg'),
+                    fit: BoxFit.cover,
+                  )),
                   child: Text("")),
               ListTile(
                 leading: Icon(
@@ -143,7 +142,7 @@ class _SecondState extends State<Second> {
                       fontSize: 30),
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(right:25 ),
+                  padding: EdgeInsets.only(right: 25),
                   child: Text(
                     "eye on your \n finger tips",
                     style: TextStyle(
@@ -153,53 +152,54 @@ class _SecondState extends State<Second> {
                   ),
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(top: 70),
+                  padding: EdgeInsets.only(top: 70),
                   child: Center(
                     child: Stack(
                       children: [
                         Container(
                           decoration: BoxDecoration(
                               border: Border.all(
-                                width: 7,color: Colors.blue,
+                                width: 7,
+                                color: Colors.blue,
                               ),
-                              borderRadius: BorderRadius.circular(97)
-                          ),
+                              borderRadius: BorderRadius.circular(97)),
                           child: CircleAvatar(
                             backgroundImage: AssetImage("assets/images/e.jpg"),
                             radius: 90,
                           ),
                         ),
                         Padding(
-                          padding:  EdgeInsets.only(left: 140),
+                          padding: EdgeInsets.only(left: 140),
                           child: Container(
                             decoration: BoxDecoration(
                                 border: Border.all(
-                                  width: 7,color: Colors.blue,
+                                  width: 7,
+                                  color: Colors.blue,
                                 ),
-                                borderRadius: BorderRadius.circular(97)
-                            ),
+                                borderRadius: BorderRadius.circular(97)),
                             child: CircleAvatar(
-                              backgroundImage: AssetImage("assets/images/d.jpg"),
+                              backgroundImage:
+                                  AssetImage("assets/images/d.jpg"),
                               radius: 90,
                             ),
                           ),
                         ),
                         Padding(
-                          padding:  EdgeInsets.only(left: 70),
+                          padding: EdgeInsets.only(left: 70),
                           child: Container(
                             decoration: BoxDecoration(
                                 border: Border.all(
-                                  width: 7,color: Colors.blue,
+                                  width: 7,
+                                  color: Colors.blue,
                                 ),
-                                borderRadius: BorderRadius.circular(97)
-                            ),
+                                borderRadius: BorderRadius.circular(97)),
                             child: CircleAvatar(
-                              backgroundImage: AssetImage("assets/images/f.jpg"),
+                              backgroundImage:
+                                  AssetImage("assets/images/f.jpg"),
                               radius: 90,
                             ),
                           ),
                         ),
-
                       ],
                     ),
                   ),
@@ -210,17 +210,27 @@ class _SecondState extends State<Second> {
                 SizedBox(
                   height: 50,
                   width: 200,
-                  child: ElevatedButton(onPressed: (){
-                    Navigator.pushNamed(context, "home");
-                  },
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, "home");
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF61A6FF).withOpacity(0.55),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(topRight: Radius.circular(10,),bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10))
-                          )
-                      ),
-
-                      child: Text("Get Started",style: TextStyle(fontSize: 20,fontStyle: FontStyle.italic,fontWeight: FontWeight.w800,color: Colors.white),)),
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(
+                                    10,
+                                  ),
+                                  bottomRight: Radius.circular(10),
+                                  bottomLeft: Radius.circular(10)))),
+                      child: Text(
+                        "Get Started",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white),
+                      )),
                 ),
               ],
             ),

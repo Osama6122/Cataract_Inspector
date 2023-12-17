@@ -1,9 +1,4 @@
-import 'dart:developer';
-
-import 'package:eyecataract/home.dart';
-import 'package:eyecataract/login.dart';
 import 'package:eyecataract/name.dart';
-import 'package:eyecataract/second.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -12,7 +7,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(); // Initialize Firebase
-  //runApp(MaterialApp(home: SignUpScreen())); // Run your app
 }
 
 class MySignUp extends StatefulWidget {
@@ -26,32 +20,12 @@ class _MySignUpState extends State<MySignUp> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
-  bool showpass=false;
-
-  final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  bool showpass = false;
 
   bool _isLoading = false;
   String _errorText = '';
-  Future<UserCredential?> _handleSignIn() async {
-    try {
-      final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
-      if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleSignInAuthentication.accessToken,
-          idToken: googleSignInAuthentication.idToken,
-        );
-        return await _auth.signInWithCredential(credential);
-      }
-    } catch (error) {
-      print("Error signing in with Google: $error");
-    }
-  }
-
-
-
-
 
   Future<void> _signUp() async {
     setState(() {
@@ -63,7 +37,8 @@ class _MySignUpState extends State<MySignUp> {
       if (_passwordController.text != _confirmPasswordController.text) {
         throw 'Password and Confirm Password do not match.';
       }
-      final UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      final UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
@@ -71,10 +46,12 @@ class _MySignUpState extends State<MySignUp> {
       if (userCredential.user != null) {
         // Successfully signed up
 //----------------------------------------------------------------------------------------//
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context)=> Name(email: userCredential.user!.email ?? "default_email@example.com"))
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => Name(
+                    email: userCredential.user!.email ??
+                        "default_email@example.com"))
 //----------------------------------------------------------------------------------------//
-        );
+            );
       }
     } catch (e) {
       setState(() {
@@ -85,7 +62,6 @@ class _MySignUpState extends State<MySignUp> {
         _isLoading = false;
       });
     }
-
   }
 
   @override
@@ -95,32 +71,42 @@ class _MySignUpState extends State<MySignUp> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        iconTheme: IconThemeData(
-            color: Colors.black
-        ),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
-              padding:  EdgeInsets.only(top: 70),
-              child: Text("Cataract",style: TextStyle(color: Color(0xFF61A6FF),fontWeight: FontWeight.w900,fontSize: 40,fontFamily: 'dhurjati'),),
+              padding: EdgeInsets.only(top: 70),
+              child: Text(
+                "Cataract",
+                style: TextStyle(
+                    color: Color(0xFF61A6FF),
+                    fontWeight: FontWeight.w900,
+                    fontSize: 40,
+                    fontFamily: 'dhurjati'),
+              ),
             ),
-            Text("Inspector",style: TextStyle(color: Color(0xFF61A6FF),fontWeight: FontWeight.w900,fontSize: 25),),
-
+            Text(
+              "Inspector",
+              style: TextStyle(
+                  color: Color(0xFF61A6FF),
+                  fontWeight: FontWeight.w900,
+                  fontSize: 25),
+            ),
             Padding(
-              padding: EdgeInsets.only(right: 250,top: 60),
-              child: Text("Sign Up",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w900,fontSize: 30),),
+              padding: EdgeInsets.only(right: 250, top: 60),
+              child: Text(
+                "Sign Up",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 30),
+              ),
             ),
-
             SizedBox(
-              height:20,
+              height: 20,
             ),
-
-
-
-
-
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: TextField(
@@ -129,56 +115,44 @@ class _MySignUpState extends State<MySignUp> {
                   labelText: 'email address',
                   filled: true,
                   fillColor: Colors.blue.withOpacity(0.07),
-
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(width: 4,color: Colors.white),
+                    borderSide: BorderSide(width: 4, color: Colors.white),
                     borderRadius: BorderRadius.circular(20),
-
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.white,
-                      )
-                  ),
-
-
+                    color: Colors.white,
+                  )),
                 ),
               ),
             ),
-
-
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: TextField(
                 controller: _passwordController,
-                obscureText:!showpass,
+                obscureText: !showpass,
                 decoration: InputDecoration(
-
                   filled: true,
                   fillColor: Colors.blue.withOpacity(0.07),
                   labelText: 'password',
-
                   enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(width: 4,color: Colors.white),
-                      borderRadius: BorderRadius.circular(20)
-
-                  ),
+                      borderSide: BorderSide(width: 4, color: Colors.white),
+                      borderRadius: BorderRadius.circular(20)),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.white,
-                      )
-                  ),
+                    color: Colors.white,
+                  )),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      showpass ? Icons.visibility: Icons.visibility_off,
+                      showpass ? Icons.visibility : Icons.visibility_off,
                       color: Colors.grey,
-                    ), onPressed: () {
-                    setState(() {
-                      showpass=!showpass;
-                    });
-                  },
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        showpass = !showpass;
+                      });
+                    },
                   ),
-
                 ),
               ),
             ),
@@ -188,67 +162,55 @@ class _MySignUpState extends State<MySignUp> {
                 controller: _confirmPasswordController,
                 obscureText: !showpass,
                 decoration: InputDecoration(
-
                   filled: true,
                   fillColor: Colors.blue.withOpacity(0.07),
                   labelText: 'confirm password',
-
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(width: 4,color: Colors.white),
+                    borderSide: BorderSide(width: 4, color: Colors.white),
                     borderRadius: BorderRadius.circular(20),
-
-
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.white,
-                      )
-                  ),
+                    color: Colors.white,
+                  )),
                   suffixIcon: IconButton(
                     icon: Icon(
-                      showpass ? Icons.visibility: Icons.visibility_off,
+                      showpass ? Icons.visibility : Icons.visibility_off,
                       color: Colors.grey,
-                    ), onPressed: () {
-                    setState(() {
-                      showpass=!showpass;
-                    });
-                  },
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        showpass = !showpass;
+                      });
+                    },
                   ),
-
-
                 ),
               ),
             ),
-
             SizedBox(
               height: 32,
             ),
             SizedBox(
               width: 80,
-              child:ElevatedButton(
+              child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF61A6FF).withOpacity(0.55),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(topRight: Radius.circular(14),bottomRight: Radius.circular(14),bottomLeft: Radius.circular(14))
-                    )
-                ),
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(14),
+                            bottomRight: Radius.circular(14),
+                            bottomLeft: Radius.circular(14)))),
                 onPressed: _isLoading ? null : _signUp,
                 child: _isLoading
                     ? CircularProgressIndicator()
-                    : Icon(
-                    Icons.arrow_forward
-                ),
+                    : Icon(Icons.arrow_forward),
               ),
             ),
-
-
-
             SizedBox(
-              height:10,
+              height: 10,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-
             ),
             Padding(
               padding: EdgeInsets.only(left: 70),

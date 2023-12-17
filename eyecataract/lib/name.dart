@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
-//------------------------------------------//
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-//------------------------------------------//
 
 class Name extends StatefulWidget {
   final String email;
@@ -15,11 +11,9 @@ class Name extends StatefulWidget {
 }
 
 class _NameState extends State<Name> {
-  //------------------------------------------//
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
-  //------------------------------------------//
 
   String selectedGender = "";
   String selectedAvatar = "human.png";
@@ -31,7 +25,6 @@ class _NameState extends State<Name> {
     'man.png',
   ];
 
-  //------------------------------------------//
   @override
   void dispose() {
     _firstNameController.dispose();
@@ -39,7 +32,6 @@ class _NameState extends State<Name> {
     _ageController.dispose();
     super.dispose();
   }
-  //------------------------------------------//
 
   @override
   Widget build(BuildContext context) {
@@ -102,8 +94,8 @@ class _NameState extends State<Name> {
                   ),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.white,
-                      )),
+                    color: Colors.white,
+                  )),
                 ),
               ),
             ),
@@ -122,8 +114,8 @@ class _NameState extends State<Name> {
                       borderSide: BorderSide(width: 4, color: Colors.white)),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.white,
-                      )),
+                    color: Colors.white,
+                  )),
                 ),
               ),
             ),
@@ -142,8 +134,8 @@ class _NameState extends State<Name> {
                       borderSide: BorderSide(width: 4, color: Colors.white)),
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.white,
-                      )),
+                    color: Colors.white,
+                  )),
                 ),
               ),
             ),
@@ -160,7 +152,11 @@ class _NameState extends State<Name> {
                     });
                   },
                 ),
-                Text("Male", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800, fontStyle: FontStyle.italic)),
+                Text("Male",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                        fontStyle: FontStyle.italic)),
                 Radio<String>(
                   value: "Female",
                   groupValue: selectedGender,
@@ -170,7 +166,11 @@ class _NameState extends State<Name> {
                     });
                   },
                 ),
-                Text("Female", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800, fontStyle: FontStyle.italic)),
+                Text("Female",
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                        fontStyle: FontStyle.italic)),
               ],
             ),
 

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:eyecataract/first.dart';
 import 'package:flutter/material.dart';
 
@@ -32,12 +31,22 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Cataract",style: TextStyle(fontSize: 50,fontWeight: FontWeight.w900,color: Colors.white),),
-              Text("Inspector",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w900,color: Colors.white),),
+              Text(
+                "Cataract",
+                style: TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white),
+              ),
+              Text(
+                "Inspector",
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white),
+              ),
             ],
-
           ),
-        )
-    );
+        ));
   }
 }

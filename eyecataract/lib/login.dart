@@ -1,16 +1,8 @@
-import 'dart:ffi';
-
-import 'package:eyecataract/home.dart';
 import 'package:eyecataract/second.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:get/get.dart';
-
-
 
 class MyLogin extends StatefulWidget {
-
   const MyLogin({super.key});
 
   @override
@@ -23,7 +15,7 @@ class _MyLoginState extends State<MyLogin> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool showpass=false;
+  bool showpass = false;
   bool isloading = false;
   String? _errorText;
   Future<void> _login() async {
@@ -31,18 +23,15 @@ class _MyLoginState extends State<MyLogin> {
       isloading = true;
     });
 
-
     try {
       final UserCredential userCredential =
-      await _auth.signInWithEmailAndPassword(
+          await _auth.signInWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
 
       if (userCredential.user != null) {
         // Successfully logged in
-
-
 
         Navigator.pushReplacement(
           context,
@@ -64,31 +53,44 @@ class _MyLoginState extends State<MyLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        iconTheme: IconThemeData(
-            color: Colors.black
-        ),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
-              padding:  EdgeInsets.only(top: 70),
-              child: Text("Cataract",style: TextStyle(color: Color(0xFF61A6FF),fontWeight: FontWeight.w900,fontSize: 40,fontFamily: 'dhurjati'),),
+              padding: EdgeInsets.only(top: 70),
+              child: Text(
+                "Cataract",
+                style: TextStyle(
+                    color: Color(0xFF61A6FF),
+                    fontWeight: FontWeight.w900,
+                    fontSize: 40,
+                    fontFamily: 'dhurjati'),
+              ),
             ),
-            Text("Inspector",style: TextStyle(color: Color(0xFF61A6FF),fontWeight: FontWeight.w900,fontSize: 25),),
-
-            Padding(
-              padding: EdgeInsets.only(right: 250,top: 60),
-              child: Text("Login",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w900,fontSize: 30),),
+            Text(
+              "Inspector",
+              style: TextStyle(
+                  color: Color(0xFF61A6FF),
+                  fontWeight: FontWeight.w900,
+                  fontSize: 25),
             ),
-
-
             Padding(
-              padding:  EdgeInsets.only(right: 10,top: 20),
+              padding: EdgeInsets.only(right: 250, top: 60),
+              child: Text(
+                "Login",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 30),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 10, top: 20),
               child: Form(
                 key: _formkey,
                 child: Column(
@@ -108,15 +110,14 @@ class _MyLoginState extends State<MyLogin> {
                           labelText: 'email address',
                           filled: true,
                           fillColor: Colors.blue.withOpacity(0.07),
-
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(width: 4, color: Colors.white),
+                              borderSide:
+                                  BorderSide(width: 4, color: Colors.white),
                               borderRadius: BorderRadius.circular(20)),
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Colors.white,
-                              )
-                          ),
+                            color: Colors.white,
+                          )),
                         ),
                       ),
                     ),
@@ -127,7 +128,6 @@ class _MyLoginState extends State<MyLogin> {
                       height: 50,
                       width: 337,
                       child: TextFormField(
-
                         controller: _passwordController,
                         validator: (text) {
                           if (text == null || text.isEmpty) {
@@ -141,22 +141,25 @@ class _MyLoginState extends State<MyLogin> {
                           filled: true,
                           fillColor: Colors.blue.withOpacity(0.07),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(width: 4, color: Colors.white),
+                              borderSide:
+                                  BorderSide(width: 4, color: Colors.white),
                               borderRadius: BorderRadius.circular(20)),
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Colors.white,
-                              )
-                          ),
+                            color: Colors.white,
+                          )),
                           suffixIcon: IconButton(
                             icon: Icon(
-                              showpass ? Icons.visibility: Icons.visibility_off,
+                              showpass
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
                               color: Colors.grey,
-                            ), onPressed: () {
-                            setState(() {
-                              showpass=!showpass;
-                            });
-                          },
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                showpass = !showpass;
+                              });
+                            },
                           ),
                         ),
                       ),
@@ -168,11 +171,13 @@ class _MyLoginState extends State<MyLogin> {
                       width: 80,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xFF61A6FF).withOpacity(0.55),
+                              backgroundColor:
+                                  Color(0xFF61A6FF).withOpacity(0.55),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(topRight: Radius.circular(14),bottomRight: Radius.circular(14),bottomLeft: Radius.circular(14))
-                              )
-                          ),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(14),
+                                      bottomRight: Radius.circular(14),
+                                      bottomLeft: Radius.circular(14)))),
                           onPressed: () {
                             if (_formkey.currentState!.validate()) {
                               _login();
@@ -180,19 +185,16 @@ class _MyLoginState extends State<MyLogin> {
                           },
                           child: isloading
                               ? CircularProgressIndicator(
-                            color: Colors.white,
-                          )
-                              : Icon(
-                              Icons.arrow_forward
-                          )
-                      ),
+                                  color: Colors.white,
+                                )
+                              : Icon(Icons.arrow_forward)),
                     )
                   ],
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 70,top: 20),
+              padding: EdgeInsets.only(left: 70, top: 20),
               child: Row(
                 children: [
                   Text(
@@ -216,9 +218,6 @@ class _MyLoginState extends State<MyLogin> {
           ],
         ),
       ),
-
     );
   }
-
-
 }

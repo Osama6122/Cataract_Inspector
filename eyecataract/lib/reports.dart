@@ -30,7 +30,8 @@ class _ReportPageState extends State<ReportPage> {
       }
 
       var response = await http.get(
-        Uri.parse('http://192.168.18.14:8000/get_all_eye_images?email=$userEmail'),
+        Uri.parse(
+            'http://192.168.18.14:8000/get_all_eye_images?email=$userEmail'),
       );
 
       if (response.statusCode == 200) {
@@ -72,44 +73,44 @@ class _ReportPageState extends State<ReportPage> {
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
-        child: Column(
-          children: [
-            Center(
-              child: Text(
-                'Reports',
-                style: TextStyle(
-                  fontSize: 35,
-                  color: Color(0xFF61A6FF),
-                  fontWeight: FontWeight.w900,
-                ),
+              child: Column(
+                children: [
+                  Center(
+                    child: Text(
+                      'Reports',
+                      style: TextStyle(
+                        fontSize: 35,
+                        color: Color(0xFF61A6FF),
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  DataTable(
+                    columns: [
+                      DataColumn(label: Text('ID')),
+                      DataColumn(label: Text('Eye')),
+                      DataColumn(label: Text('Result')),
+                      DataColumn(label: Text('Time')),
+                    ],
+                    rows: data
+                        .map(
+                          (item) => DataRow(
+                            cells: [
+                              DataCell(Text(item['id'].toString())),
+                              DataCell(Text(item['eye'])),
+                              DataCell(Text(item['result'].toString())),
+                              DataCell(Text(item['time'])),
+                            ],
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ],
               ),
             ),
-            SizedBox(
-              height: 50,
-            ),
-            DataTable(
-              columns: [
-                DataColumn(label: Text('ID')),
-                DataColumn(label: Text('Eye')),
-                DataColumn(label: Text('Result')),
-                DataColumn(label: Text('Time')),
-              ],
-              rows: data
-                  .map(
-                    (item) => DataRow(
-                  cells: [
-                    DataCell(Text(item['id'].toString())),
-                    DataCell(Text(item['eye'])),
-                    DataCell(Text(item['result'].toString())),
-                    DataCell(Text(item['time'])),
-                  ],
-                ),
-              )
-                  .toList(),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

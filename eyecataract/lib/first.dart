@@ -68,7 +68,6 @@ class _FirstState extends State<First> {
                       child: Image.asset('assets/images/cartoon.png',
                         fit: BoxFit.cover,
 
-
                       ),
                     )
 

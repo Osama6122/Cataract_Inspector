@@ -131,6 +131,7 @@ def check_for_cataract():
 
 
     user_email = request.form.get('email')  # or request.args.get('user_id')
+    eye = request.form.get('eye', 'unknown')
 
     # Process and store the image and result in MongoDB
     # Assuming you have a MongoDB collection named 'users'
@@ -142,11 +143,44 @@ def check_for_cataract():
     # Store the base64 string instead of the numpy array
     user_collection.update_one(
         {'email': user_email},
-        {'$push': {'eye_images': {'timestamp': timestamp, 'image_base64': image_base64, 'result': result}}}, upsert=True
+        {'$push': {'eye_images': {'timestamp': timestamp, 'image_base64': image_base64, 'result': result, 'eye': eye}}}, upsert=True
     )
 
 
     return jsonify({'result': result})
+
+
+@app.route('/get_all_eye_images', methods=['GET'])
+def get_all_eye_images():
+    try:
+        user_email = request.args.get('email')
+
+        if not user_email:
+            return jsonify({'error': 'Email is required'}), 400
+
+        # Fetch user's eye images information
+        user_data = user_collection.find_one({'email': user_email}, {'eye_images': 1})
+
+        if user_data and 'eye_images' in user_data:
+            eye_images_info = user_data['eye_images']
+            # Process the data to return only needed fields, checking for existence of 'eye'
+            result = [{
+                'index': idx,
+                'result': img.get('result', 'unknown'),  # Default to 'unknown' if not present
+                'timestamp': img.get('timestamp', 'unknown'),
+                'eye': img.get('eye', 'unknown')  # Check for 'eye' field existence
+            } for idx, img in enumerate(eye_images_info)]
+
+            return jsonify(result), 200
+        else:
+            return jsonify({'error': 'User or eye images not found'}), 404
+
+    except Exception as e:
+        return jsonify({'error': f'Error fetching eye images: {str(e)}'}), 500
+
+
+
+
 
 
 if __name__ == '__main__':

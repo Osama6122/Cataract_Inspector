@@ -32,11 +32,42 @@ class _HomeState extends State<Home> {
     final labelFile = await rootBundle.loadString('assets/label.txt');
     labels = labelFile.split('\n').where((label) => label.isNotEmpty).toList();
   }
+
+  Future<String?> _askUserForEye() async {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Select Eye'),
+          content: const Text('Which eye did you take a picture of?'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Left'),
+              onPressed: () => Navigator.of(context).pop('left'),
+            ),
+            TextButton(
+              child: const Text('Right'),
+              onPressed: () => Navigator.of(context).pop('right'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Future<void> evaluateImage() async {
     if (_croppedFile == null) {
       // Show an error message or handle accordingly
       return;
     }
+
+    // Ask the user for the eye information
+    String? eye = await _askUserForEye();
+    if (eye == null) {
+      // User did not select an eye, handle accordingly
+      return;
+    }
+
     var user = FirebaseAuth.instance.currentUser;
     var request = http.MultipartRequest(
       'POST',
@@ -45,6 +76,7 @@ class _HomeState extends State<Home> {
 
     // Add user identifier
     request.fields['email'] = user?.email ?? '';
+    request.fields['eye'] = eye;
     // Attach the cropped image to the request
     request.files.add(
       await http.MultipartFile.fromPath('image', _croppedFile!.path),

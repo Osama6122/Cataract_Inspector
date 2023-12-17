@@ -331,6 +331,8 @@ class _MyAccountState extends State<MyAccount> {
                 userInfoRow("Age", userData['age']?.toString() ?? 'N/A'),
                 // ... other user info fields ...
                 SizedBox(height: 30),
+                showReportsButton(),
+                SizedBox(height: 30),
                 changePasswordButton(),
                 SizedBox(height: 20),
                 signOutButton(),
@@ -360,6 +362,26 @@ class _MyAccountState extends State<MyAccount> {
       ),
     );
   }
+
+
+  Widget showReportsButton() {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.pushNamed(context, "reports");
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Color(0xFF61A6FF).withOpacity(0.55),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      child: Text(
+        "Show Reports",
+        style: TextStyle(fontSize: 20, fontStyle: FontStyle.italic, fontWeight: FontWeight.w800, color: Colors.white),
+      ),
+    );
+  }
+
 
   Widget changePasswordButton() {
     return ElevatedButton(

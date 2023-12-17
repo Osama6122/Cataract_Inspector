@@ -1,8 +1,11 @@
 
+// import 'dart:js';
+
 import 'package:eyecataract/changepassword.dart';
 import 'package:eyecataract/first.dart';
 import 'package:eyecataract/home.dart';
 import 'package:eyecataract/login.dart';
+import 'package:eyecataract/reports.dart';
 import 'package:eyecataract/second.dart';
 import 'package:eyecataract/signup.dart';
 import 'package:eyecataract/splash_screen.dart';
@@ -30,6 +33,7 @@ void main() async {
       'second':(context)=>Second(),
       'account':(context)=>MyAccount(),
       //'name':(context)=>Name(),
+      'reports':(context)=>ReportPage(),
       'changepassword':(context)=>ChangePassword()
 
     },

@@ -31,7 +31,7 @@ class _ReportPageState extends State<ReportPage> {
 
       var response = await http.get(
         Uri.parse(
-            'http://192.168.18.14:8000/get_all_eye_images?email=$userEmail'),
+            'http://192.168.45.152:8000/get_all_eye_images?email=$userEmail'),
       );
 
       if (response.statusCode == 200) {

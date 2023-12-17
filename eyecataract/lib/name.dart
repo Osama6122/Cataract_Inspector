@@ -180,7 +180,7 @@ class _NameState extends State<Name> {
               width: 130,
               child: ElevatedButton(
                 onPressed: () async {
-                  var url = Uri.parse('http://192.168.18.14:8000/add_user');
+                  var url = Uri.parse('http://192.168.45.152:8000/add_user');
                   try {
                     var response = await http.post(url, body: {
                       'first_name': _firstNameController.text,

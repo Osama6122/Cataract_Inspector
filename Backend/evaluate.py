@@ -33,7 +33,7 @@ def eval(image):
     
     # Load the trained model with custom layer
     custom_objects = {'FixedDropout': fixed_dropout}
-    model_path = '../Trained_models/cataract_net.h5'
+    model_path = '../Trained_models/my_model.h5'
     with h5py.File(model_path, 'r') as file:
         loaded_model = load_model(file, custom_objects=custom_objects)
 

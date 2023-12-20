@@ -1,3 +1,6 @@
+
+
+import 'package:eyecataract/about.dart';
 import 'package:eyecataract/changepassword.dart';
 import 'package:eyecataract/first.dart';
 import 'package:eyecataract/home.dart';
@@ -25,7 +28,8 @@ void main() async {
       'account': (context) => MyAccount(),
       //'name':(context)=>Name(),
       'reports': (context) => ReportPage(),
-      'changepassword': (context) => ChangePassword()
+      'changepassword': (context) => ChangePassword(),
+      'about': (context)=> AboutUs(),
     },
   ));
 }

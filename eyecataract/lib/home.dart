@@ -55,7 +55,7 @@ class _HomeState extends State<Home> {
     var user = FirebaseAuth.instance.currentUser;
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse('http://192.168.45.152:8000/check_for_cataract'),
+      Uri.parse('http://10.128.71.4:8000/check_for_cataract'),
     );
     // Add user identifier
     request.fields['email'] = user?.email ?? '';

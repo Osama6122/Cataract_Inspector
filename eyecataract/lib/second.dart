@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 
 class Second extends StatefulWidget {
   const Second({super.key});
@@ -54,9 +57,14 @@ class _SecondState extends State<Second> {
                 ),
                 title: Padding(
                   padding: EdgeInsets.only(left: 0, right: 100),
-                  child: Text(
-                    "Home",
-                    style: TextStyle(color: Colors.blue, fontSize: 20),
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, 'home');
+                    },
+                    child: Text(
+                      "Home",
+                      style: TextStyle(color: Colors.blue, fontSize: 20),
+                    ),
                   ),
                 ),
               ),
@@ -79,20 +87,7 @@ class _SecondState extends State<Second> {
                   ),
                 ),
               ),
-              ListTile(
-                leading: Icon(
-                  Icons.share,
-                  size: 28,
-                  color: Colors.blue,
-                ),
-                title: Padding(
-                  padding: EdgeInsets.only(left: 0, right: 100),
-                  child: Text(
-                    "Share ",
-                    style: TextStyle(color: Colors.blue, fontSize: 20),
-                  ),
-                ),
-              ),
+
               ListTile(
                 leading: Icon(
                   Icons.grade_outlined,
@@ -101,9 +96,15 @@ class _SecondState extends State<Second> {
                 ),
                 title: Padding(
                   padding: EdgeInsets.only(left: 0, right: 100),
-                  child: Text(
-                    "About Us",
-                    style: TextStyle(color: Colors.blue, fontSize: 20),
+                  child: GestureDetector(
+                    onTap: (){
+
+                      Navigator.pushNamed(context, "about");
+                    },
+                    child: Text(
+                      "About Us",
+                      style: TextStyle(color: Colors.blue, fontSize: 20),
+                    ),
                   ),
                 ),
               ),
@@ -119,9 +120,22 @@ class _SecondState extends State<Second> {
                   ),
                   title: Padding(
                     padding: EdgeInsets.only(left: 0, right: 100),
-                    child: Text(
-                      "Exit",
-                      style: TextStyle(color: Colors.blue, fontSize: 20),
+                    child: GestureDetector(
+                      onTap: (){
+
+                          if(Platform.isAndroid)
+                          {
+                            SystemNavigator.pop();
+                          }
+                          else
+                          {
+                            return;
+                          }
+                      },
+                      child: Text(
+                        "Exit",
+                        style: TextStyle(color: Colors.blue, fontSize: 20),
+                      ),
                     ),
                   ),
                 ),

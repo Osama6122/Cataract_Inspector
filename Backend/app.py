@@ -10,8 +10,6 @@ import logging
 
 # DEFINE CONFIG
 PORT = 8000 # Port backend is running on
-MONGODB_USERNAME = "cataractdetector"
-MONGODB_PASSWORD = "udC3ww1amM48idoT"
 MONGO_CONNECT_URL = f"mongodb+srv://{MONGODB_USERNAME}:{MONGODB_PASSWORD}@cluster0.xa4vby2.mongodb.net/?retryWrites=true&w=majority"
 
 
